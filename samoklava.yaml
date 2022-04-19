@@ -226,7 +226,7 @@ outlines:
         name: base_outline
       screw_holes:
         type: outline
-        # TODO use footprints with pad + via reinforcement as mounting holes
+        # TODO use footprints with pad + via reinforcement as mounting holes 
         name: screw_holes
         operation: subtract
     plate:
