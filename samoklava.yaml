@@ -91,7 +91,6 @@ points:
         thumb:
           row_net: P7
 outlines:
-  # board dimensions according to JLCPCB: 122.28 mm x 101.05 mm
   exports:
     raw:
       - type: keys
@@ -182,13 +181,13 @@ outlines:
         type: circle
         anchor:
           - ref: matrix_ring_home
-            shift: [-0.5 kx, 0 ky]
+            shift: [-0.5 kx, 0.5 ky]
         radius: 1.05
       bottom_left:
         type: circle
         anchor:
           - ref: matrix_pinky_bottom
-            shift: [0.5 kx, 0]
+            shift: [0.5 kx, 0.5 ky]
         radius: 1.05
       top_right:
         type: circle
@@ -200,7 +199,13 @@ outlines:
         type: circle
         anchor:
           - ref: matrix_index_bottom
-            shift: [0, -1.06 ky]
+            shift: [0.5 kx, 0 ky]
+        radius: 1.05
+      palma:
+        type: circle
+        anchor:
+          - ref: matrix_inner_top
+            shift: [-0.5 kx, -2 ky]
         radius: 1.05
       thumb:
         type: circle
@@ -242,7 +247,6 @@ outlines:
         # TODO use footprints with pad + via reinforcement as mounting holes
         name: screw_holes
         operation: subtract
-
     pcb:
       main:
         type: outline
@@ -333,38 +337,38 @@ pcbs:
           text: "B-"
         nets:
           net: Bminus
-      trrs_l:
-        type: trrs
-        anchor:
-          ref:
-            - matrix_inner_bottom
-          shift: [32, -15]
-          rotate: 270
-        params:
-          reverse: false
-          symmetric: false
-        # The naming of the nets on this footprint is different from the Corne schematics.
-        nets:
-          A: ""
-          B: VCC
-          C: GND
-          D: P0
-      trrs_r:
-        type: trrs
-        anchor:
-          ref:
-            - matrix_inner_bottom
-          shift: [32, -13]
-          rotate: 270
-        params:
-          reverse: true
-          symmetric: false
-        # The naming of the nets on this footprint is different from the Corne schematics.
-        nets:
-          A: ""
-          B: VCC
-          C: GND
-          D: P0
+      # trrs_l:
+      #   type: trrs
+      #   anchor:
+      #     ref:
+      #       - matrix_inner_bottom
+      #     shift: [32, -15]
+      #     rotate: 270
+      #   params:
+      #     reverse: false
+      #     symmetric: false
+      #   # The naming of the nets on this footprint is different from the Corne schematics.
+      #   nets:
+      #     A: ""
+      #     B: VCC
+      #     C: GND
+      #     D: P0
+      # trrs_r:
+      #   type: trrs
+      #   anchor:
+      #     ref:
+      #       - matrix_inner_bottom
+      #     shift: [32, -13]
+      #     rotate: 270
+      #   params:
+      #     reverse: true
+      #     symmetric: false
+      #   # The naming of the nets on this footprint is different from the Corne schematics.
+      #   nets:
+      #     A: ""
+      #     B: VCC
+      #     C: GND
+      #     D: P0
       jumper_l:
         type: jumper
         anchor:
@@ -425,23 +429,3 @@ pcbs:
         nets:
           from: GND
           to: RST
-      info_l:
-        type: text
-        anchor:
-          ref:
-            - matrix_pinky_bottom
-          shift: [0.75 kx, 0]
-        params:
-          text: "samoklava v0.1\\nby soundmonster"
-          justify: left
-      info_r:
-        type: text
-        anchor:
-          ref:
-            - matrix_pinky_bottom
-          shift: [0.75 kx, 0]
-        params:
-          layer: B.SilkS
-          text: "samoklava v0.1\\nby soundmonster"
-          justify: right mirror
-
